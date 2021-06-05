@@ -1,6 +1,8 @@
 package com.silencer.jpa.onetomany.domain.v1;
 
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +24,12 @@ public class TeamV1 {
 
 	private String name;
 
-	@OneToMany(orphanRemoval = true)
-	private List<MemberV1> members;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<MemberV1> members = new ArrayList<>();
+
+	public static TeamV1 of(String name) {
+		TeamV1 team = new TeamV1();
+		team.name = name;
+		return team;
+	}
 }

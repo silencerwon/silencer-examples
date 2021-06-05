@@ -5,9 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.Getter;
 
 @Entity
+@Getter
 public class MemberV1 {
 
 	@Column(name = "member_id", nullable = false)
@@ -18,4 +19,11 @@ public class MemberV1 {
 	private String name;
 
 	private Integer age;
+
+	public static MemberV1 of(String name, int age) {
+		MemberV1 member = new MemberV1();
+		member.name = name;
+		member.age = age;
+		return member;
+	}
 }

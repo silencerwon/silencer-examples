@@ -1,5 +1,6 @@
 package com.silencer.jpa.onetomany.domain.v2;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,14 +18,20 @@ import lombok.Setter;
 @Setter
 public class TeamV2 {
 
-	@Column(name = "team_id", nullable = false)
+	@Column(name = "team_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String name;
 
-	@JoinColumn(name = "member_id")
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<MemberV2> members;
+	@OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
+	@JoinColumn(name = "team_id")
+	private List<MemberV2> members = new ArrayList<>();
+
+	public static TeamV2 of(String name) {
+		TeamV2 team = new TeamV2();
+		team.name = name;
+		return team;
+	}
 }
