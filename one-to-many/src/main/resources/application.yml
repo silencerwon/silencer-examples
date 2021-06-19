@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:/Users/silencer/IdeaProjects/silencer-examples/delete-and-insert/src/main/resources/db/default;AUTO_SERVER=TRUE
+    url: jdbc:h2:/Users/silencer/IdeaProjects/silencer-examples/one-to-many/src/main/resources/db/default;AUTO_SERVER=TRUE
     username: test
     password: asdf1234
     driver-class-name: org.h2.Driver
